@@ -9,7 +9,7 @@ import (
 // to current working directory.
 // E.g. `/tmp/test` if you run app here.
 func Abs() (string, error) {
-	return filepath.Abs(os.Args[0])
+	return filepath.Abs(filepath.Dir(os.Args[0]))
 }
 
 // Name - return current working
