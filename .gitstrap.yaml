@@ -1,0 +1,30 @@
+---
+gitstrap:
+    version: v1
+    github:
+        repo:
+            name: gopwd
+            description: "Golang library to get $PWD (current working directory)"
+            private: false
+            hooks:
+                - url: "http://p.rehttp.net/http://www.0pdd.com/hook/github"
+                  type: form
+                  events:
+                      - push
+                  active: true
+            collaborators:
+                - "rultor"
+                - "0pdd"
+    templates:
+        - name: "README.md"
+          url: "https://github.com/g4s8/gitstrap/blob/master/templates/README.md"
+        - name: "LICENSE"
+          url: "https://github.com/g4s8/gitstrap/blob/master/templates/LICENSE.mit"
+    params:
+        rultor: true
+        travis: true
+        readmeContrib: |
+            Fork repository, clone it, make changes,
+            push to new branch and submit a pull request.
+        pdd: true
+        license: MIT
