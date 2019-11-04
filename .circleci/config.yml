@@ -40,3 +40,12 @@ jobs:
       - run: golangci-lint run
       - run: pdd --source=$(pwd) --verbose --file=/dev/null
       - run: gitlint
+      - run:
+          name: validate formatting
+          command: |
+            if [[ -z "$(gofmt -l .)" ]]; then
+              echo "Formatting OK"
+            else
+              echo "Wrong formatting, run gofmt first"
+              exit 1
+            fi
