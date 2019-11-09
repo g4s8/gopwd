@@ -11,8 +11,8 @@ func TestAbs(t *testing.T) {
 		t.Errorf("Abs() returned error: %s", err)
 	}
 	// golang tests are running in `/tmp/go***/` dir
-	if !strings.HasPrefix(abs, "/tmp") {
-		t.Errorf("Abs() returned %s (expected `/tmp/*/gopwd.test`)", abs)
+	if !strings.HasSuffix(abs, "/gopwd") {
+		t.Errorf("Abs() returned %s (expected `/*/*/gopwd`)", abs)
 	}
 }
 

@@ -1,25 +1,38 @@
 package gopwd
 
 import (
+	"fmt"
 	"os"
-	"path/filepath"
+	"runtime"
+	"strings"
 )
 
 // Abs - return absolute path
 // to current working directory.
 // E.g. `/tmp/test` if you run app here.
 func Abs() (string, error) {
-	return filepath.Abs(filepath.Dir(os.Args[0]))
+	dir, err := os.Getwd()
+	if err != nil {
+		fmt.Println("Error on read $PWD")
+	}
+	return dir, nil
 }
 
 // Name - return current working
 // directory name, e.g. `test` if you
 // run app in `/tmp/test`.
 func Name() (string, error) {
-	abs, err := Abs()
+	dir, err := Abs()
 	if err != nil {
 		return "", err
 	}
-	name := filepath.Base(abs)
-	return name, nil
+	var ss []string
+	if runtime.GOOS == "windows" {
+		ss = strings.Split(dir, "\\")
+	} else {
+		ss = strings.Split(dir, "/")
+	}
+
+	currentDirName := ss[len(ss)-1]
+	return currentDirName, nil
 }
