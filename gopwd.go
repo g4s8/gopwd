@@ -1,23 +1,21 @@
 package gopwd
 
 import (
-	"os" 
+	"fmt"
+	"os"
 	"runtime"
 	"strings"
-	"fmt"
 )
-
-
 
 // Abs - return absolute path
 // to current working directory.
 // E.g. `/tmp/test` if you run app here.
 func Abs() (string, error) {
-	 dir, err := os.Getwd()
+	dir, err := os.Getwd()
 	if err != nil {
 		fmt.Println("Error on read $PWD")
 	}
-	return dir , nil
+	return dir, nil
 }
 
 // Name - return current working
@@ -28,13 +26,13 @@ func Name() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	var ss [] string
+	var ss []string
 	if runtime.GOOS == "windows" {
 		ss = strings.Split(dir, "\\")
 	} else {
 		ss = strings.Split(dir, "/")
 	}
 
-	currentDirName:= ss[len(ss)-1]
+	currentDirName := ss[len(ss)-1]
 	return currentDirName, nil
 }
